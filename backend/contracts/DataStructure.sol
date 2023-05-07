@@ -51,6 +51,9 @@ contract DataStructure {
         Urologic
     }
 
+    // media is stored in web3.storage ipfs
+    // cid (content indetifier) is used to access media stored on ipfs
+    // one media (or cid) is used to store multiple photos or videos associated with doctors report
     struct Media {
         string description;
         string cid;
@@ -62,12 +65,7 @@ contract DataStructure {
         string phoneNumber;
         string email;
         string rAddress; //residential address
-    }
-
-    struct Hospital {
-        string name;
-        string location; //address
-        string phoneNumber;
+        bool exists; //used to determine whether struct exists in a mapping
     }
 
     struct Doctor {
@@ -76,6 +74,26 @@ contract DataStructure {
         string email;
         string rAddress;
         MedicalSpeciality speciality;
-        Hospital[] workplace;
+        bool exists;
+    }
+
+    struct MedicalData {
+        string hospital;
+        address doctor;
+        address patient;
+        string diagnosis;
+        string treatment;
+        string medication;
+        Media media;
+    }
+
+    struct Patient {
+        string firstName;
+        string lastName;
+        string email;
+        string phoneNumber;
+        string rAddress;
+        Gender gender;
+        MedicalData[] reports;
     }
 }
