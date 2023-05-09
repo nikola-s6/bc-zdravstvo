@@ -9,7 +9,7 @@ contract HealthRecords is Authorization {
 
     // gender is sent as uint8
     function createPatient(
-        address _address,
+        address _patientAddress,
         string memory _firstName,
         string memory _lastName,
         string memory _email,
@@ -17,7 +17,7 @@ contract HealthRecords is Authorization {
         string memory _rAddress,
         Gender _gender
     ) external ownerAndAdmin returns (Patient memory) {
-        Patient storage patient = patients[_address];
+        Patient storage patient = patients[_patientAddress];
 
         patient.firstName = _firstName;
         patient.lastName = _lastName;
@@ -30,9 +30,14 @@ contract HealthRecords is Authorization {
     }
 
     function getPatient(
-        address _address
-    ) public view ownerAdminAndDoctor returns (Patient memory) {
-        return patients[_address];
+        address _patientAddress
+    )
+        public
+        view
+        ownerAdminDoctorPatient(_patientAddress)
+        returns (Patient memory)
+    {
+        return patients[_patientAddress];
     }
 
     function addMedicalData(
@@ -60,8 +65,18 @@ contract HealthRecords is Authorization {
     }
 
     function getPatientsMedicalData(
-        address _address
-    ) public view ownerAdminAndDoctor returns (MedicalData[] memory) {
-        return getPatient(_address).reports;
+        address _patientAddress
+    )
+        public
+        view
+        ownerAdminDoctorPatient(_patientAddress)
+        returns (MedicalData[] memory)
+    {
+        return getPatient(_patientAddress).reports;
+    }
+
+    // checks if function caller is patient, not if patient exists in database
+    function isPatient() public view returns (bool) {
+        return patients[msg.sender].exists;
     }
 }

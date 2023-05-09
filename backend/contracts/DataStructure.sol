@@ -95,5 +95,6 @@ contract DataStructure {
         string rAddress;
         Gender gender;
         MedicalData[] reports;
+        bool exists;
     }
 }

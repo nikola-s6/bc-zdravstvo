@@ -50,4 +50,12 @@ contract Authorization is DataStructure {
         );
         _;
     }
+
+    modifier ownerAdminDoctorPatient(address _address) {
+        require(
+            isOwner() || isAdmin() || isDoctor() || _address == msg.sender,
+            "Access denied!"
+        );
+        _;
+    }
 }
