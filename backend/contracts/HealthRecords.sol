@@ -34,4 +34,34 @@ contract HealthRecords is Authorization {
     ) public view ownerAdminAndDoctor returns (Patient memory) {
         return patients[_address];
     }
+
+    function addMedicalData(
+        string memory _hospital,
+        address _patient,
+        address _doctor,
+        string memory _treatment,
+        string memory _diagnosis,
+        string memory _medication,
+        string memory _description,
+        string memory _cid
+    ) public onlyDoctor returns (MedicalData memory) {
+        Media memory _media = Media({description: _description, cid: _cid});
+        MedicalData memory medicalData;
+        medicalData.hospital = _hospital;
+        medicalData.patient = _patient;
+        medicalData.doctor = _doctor;
+        medicalData.treatment = _treatment;
+        medicalData.diagnosis = _diagnosis;
+        medicalData.medication = _medication;
+        medicalData.media = _media;
+
+        patients[_patient].reports.push(medicalData);
+        return medicalData;
+    }
+
+    function getPatientsMedicalData(
+        address _address
+    ) public view ownerAdminAndDoctor returns (MedicalData[] memory) {
+        return getPatient(_address).reports;
+    }
 }
