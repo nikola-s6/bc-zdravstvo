@@ -5,8 +5,8 @@ import "./DataStructure.sol";
 
 contract Authorization is DataStructure {
     address private owner;
-    mapping(address => Admin) admins;
-    mapping(address => Doctor) doctors;
+    mapping(address => Admin) internal admins;
+    mapping(address => Doctor) internal doctors;
 
     constructor() {
         owner = msg.sender;
