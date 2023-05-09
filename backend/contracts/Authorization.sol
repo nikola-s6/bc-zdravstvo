@@ -12,6 +12,48 @@ contract Authorization is DataStructure {
         owner = msg.sender;
     }
 
+    function addAdmin(
+        address _adminAddress,
+        string memory _firstName,
+        string memory _lastName,
+        string memory _phoneNumber,
+        string memory _email,
+        string memory _rAddress
+    ) external onlyOwner returns (Admin memory) {
+        Admin storage admin = admins[_adminAddress];
+
+        admin.firstName = _firstName;
+        admin.lastName = _lastName;
+        admin.phoneNumber = _phoneNumber;
+        admin.email = _email;
+        admin.rAddress = _rAddress;
+        admin.exists = true;
+
+        return admin;
+    }
+
+    function addDoctor(
+        address _doctorAddress,
+        string memory _firstName,
+        string memory _lastName,
+        string memory _phoneNumber,
+        string memory _email,
+        string memory _rAddress,
+        MedicalSpeciality _speciality
+    ) external ownerAndAdmin returns (Doctor memory) {
+        Doctor storage doctor = doctors[_doctorAddress];
+
+        doctor.firstName = _firstName;
+        doctor.lastName = _lastName;
+        doctor.phoneNumber = _phoneNumber;
+        doctor.email = _email;
+        doctor.rAddress = _rAddress;
+        doctor.speciality = _speciality;
+        doctor.exists = true;
+
+        return doctor;
+    }
+
     function isOwner() internal view returns (bool) {
         return owner == msg.sender;
     }

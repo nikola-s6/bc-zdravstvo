@@ -25,6 +25,7 @@ contract HealthRecords is Authorization {
         patient.phoneNumber = _phoneNumber;
         patient.rAddress = _rAddress;
         patient.gender = _gender;
+        patient.exists = true;
 
         return patient;
     }
@@ -73,10 +74,5 @@ contract HealthRecords is Authorization {
         returns (MedicalData[] memory)
     {
         return getPatient(_patientAddress).reports;
-    }
-
-    // checks if function caller is patient, not if patient exists in database
-    function isPatient() public view returns (bool) {
-        return patients[msg.sender].exists;
     }
 }
