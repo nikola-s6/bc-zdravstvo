@@ -74,6 +74,7 @@ contract DataStructure {
         string phoneNumber;
         string email;
         string rAddress;
+        Gender gender;
         MedicalSpeciality speciality;
         bool exists;
     }

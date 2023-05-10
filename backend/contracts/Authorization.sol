@@ -39,6 +39,7 @@ contract Authorization is DataStructure {
         string memory _phoneNumber,
         string memory _email,
         string memory _rAddress,
+        Gender _gender,
         MedicalSpeciality _speciality
     ) external ownerAndAdmin returns (Doctor memory) {
         Doctor storage doctor = doctors[_doctorAddress];
@@ -48,6 +49,7 @@ contract Authorization is DataStructure {
         doctor.phoneNumber = _phoneNumber;
         doctor.email = _email;
         doctor.rAddress = _rAddress;
+        doctor.gender = _gender;
         doctor.speciality = _speciality;
         doctor.exists = true;
 
@@ -62,7 +64,7 @@ contract Authorization is DataStructure {
         return admins[msg.sender].exists;
     }
 
-    function isDoctor() internal view returns (bool) {
+    function isDoctor() public view returns (bool) {
         return doctors[msg.sender].exists;
     }
 
