@@ -86,6 +86,7 @@ contract DataStructure {
         string diagnosis;
         string treatment;
         string medication;
+        uint256 date;
         Media media;
     }
 

@@ -48,6 +48,7 @@ contract HealthRecords is Authorization {
         string memory _treatment,
         string memory _diagnosis,
         string memory _medication,
+        uint256 _date,
         string memory _description,
         string memory _cid
     ) public onlyDoctor returns (MedicalData memory) {
@@ -59,6 +60,7 @@ contract HealthRecords is Authorization {
         medicalData.treatment = _treatment;
         medicalData.diagnosis = _diagnosis;
         medicalData.medication = _medication;
+        medicalData.date = _date;
         medicalData.media = _media;
 
         patients[_patient].reports.push(medicalData);

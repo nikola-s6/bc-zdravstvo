@@ -5,7 +5,7 @@ import "./DataStructure.sol";
 
 contract Authorization is DataStructure {
     address private owner;
-    mapping(address => Admin) internal admins;
+    mapping(address => Admin) private admins;
     mapping(address => Doctor) internal doctors;
 
     constructor() {
@@ -56,11 +56,11 @@ contract Authorization is DataStructure {
         return doctor;
     }
 
-    function isOwner() internal view returns (bool) {
+    function isOwner() public view returns (bool) {
         return owner == msg.sender;
     }
 
-    function isAdmin() internal view returns (bool) {
+    function isAdmin() public view returns (bool) {
         return admins[msg.sender].exists;
     }
 
