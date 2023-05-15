@@ -77,4 +77,15 @@ contract HealthRecords is Authorization {
     {
         return getPatient(_patientAddress).reports;
     }
+
+    function getCredentials() public view returns (string memory) {
+        if (isOwner()) {
+            return "owner";
+        } else if (isAdmin()) {
+            return "admin";
+        } else if (isDoctor()) {
+            return "doctor";
+        }
+        return "patient";
+    }
 }
