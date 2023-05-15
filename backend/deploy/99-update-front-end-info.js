@@ -15,10 +15,10 @@ module.exports = async function () {
 
 async function updateContractAddresses() {
   const healthRecords = await ethers.getContract("HealthRecords")
-  //   const chainId = network.config.chainId.toString()
+  const chainId = network.config.chainId.toString()
   const currentAddresses = JSON.parse(fs.readFileSync(FRONT_END_ADDRESSES_FILE, "utf8"))
 
-  currentAddresses[chainId] = raffle.address
+  currentAddresses[chainId] = healthRecords.address
 
   fs.writeFileSync(FRONT_END_ADDRESSES_FILE, JSON.stringify(currentAddresses))
 }
