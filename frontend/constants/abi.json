@@ -1,1 +1,672 @@
-[{"type":"function","name":"addAdmin","constant":false,"payable":false,"gas":29000000,"inputs":[{"type":"address","name":"_adminAddress"},{"type":"string","name":"_firstName"},{"type":"string","name":"_lastName"},{"type":"string","name":"_phoneNumber"},{"type":"string","name":"_email"},{"type":"string","name":"_rAddress"}],"outputs":[{"type":"tuple","components":[{"type":"string","name":"firstName"},{"type":"string","name":"lastName"},{"type":"string","name":"phoneNumber"},{"type":"string","name":"email"},{"type":"string","name":"rAddress"},{"type":"bool","name":"exists"}]}]},{"type":"function","name":"addDoctor","constant":false,"payable":false,"gas":29000000,"inputs":[{"type":"address","name":"_doctorAddress"},{"type":"string","name":"_firstName"},{"type":"string","name":"_lastName"},{"type":"string","name":"_phoneNumber"},{"type":"string","name":"_email"},{"type":"string","name":"_rAddress"},{"type":"uint8","name":"_gender"},{"type":"uint8","name":"_speciality"}],"outputs":[{"type":"tuple","components":[{"type":"string","name":"firstName"},{"type":"string","name":"lastName"},{"type":"string","name":"phoneNumber"},{"type":"string","name":"email"},{"type":"string","name":"rAddress"},{"type":"uint8","name":"gender"},{"type":"uint8","name":"speciality"},{"type":"bool","name":"exists"}]}]},{"type":"function","name":"addMedicalData","constant":false,"payable":false,"gas":29000000,"inputs":[{"type":"string","name":"_hospital"},{"type":"address","name":"_patient"},{"type":"address","name":"_doctor"},{"type":"string","name":"_treatment"},{"type":"string","name":"_diagnosis"},{"type":"string","name":"_medication"},{"type":"uint256","name":"_date"},{"type":"string","name":"_description"},{"type":"string","name":"_cid"}],"outputs":[{"type":"tuple","components":[{"type":"string","name":"hospital"},{"type":"address","name":"doctor"},{"type":"address","name":"patient"},{"type":"string","name":"diagnosis"},{"type":"string","name":"treatment"},{"type":"string","name":"medication"},{"type":"uint256","name":"date"},{"type":"tuple","name":"media","components":[{"type":"string","name":"description"},{"type":"string","name":"cid"}]}]}]},{"type":"function","name":"createPatient","constant":false,"payable":false,"gas":29000000,"inputs":[{"type":"address","name":"_patientAddress"},{"type":"string","name":"_firstName"},{"type":"string","name":"_lastName"},{"type":"string","name":"_email"},{"type":"string","name":"_phoneNumber"},{"type":"string","name":"_rAddress"},{"type":"uint8","name":"_gender"}],"outputs":[{"type":"tuple","components":[{"type":"string","name":"firstName"},{"type":"string","name":"lastName"},{"type":"string","name":"email"},{"type":"string","name":"phoneNumber"},{"type":"string","name":"rAddress"},{"type":"uint8","name":"gender"},{"type":"tuple[]","name":"reports","components":[{"type":"string","name":"hospital"},{"type":"address","name":"doctor"},{"type":"address","name":"patient"},{"type":"string","name":"diagnosis"},{"type":"string","name":"treatment"},{"type":"string","name":"medication"},{"type":"uint256","name":"date"},{"type":"tuple","name":"media","components":[{"type":"string","name":"description"},{"type":"string","name":"cid"}]}]},{"type":"bool","name":"exists"}]}]},{"type":"function","name":"getPatient","constant":true,"stateMutability":"view","payable":false,"gas":29000000,"inputs":[{"type":"address","name":"_patientAddress"}],"outputs":[{"type":"tuple","components":[{"type":"string","name":"firstName"},{"type":"string","name":"lastName"},{"type":"string","name":"email"},{"type":"string","name":"phoneNumber"},{"type":"string","name":"rAddress"},{"type":"uint8","name":"gender"},{"type":"tuple[]","name":"reports","components":[{"type":"string","name":"hospital"},{"type":"address","name":"doctor"},{"type":"address","name":"patient"},{"type":"string","name":"diagnosis"},{"type":"string","name":"treatment"},{"type":"string","name":"medication"},{"type":"uint256","name":"date"},{"type":"tuple","name":"media","components":[{"type":"string","name":"description"},{"type":"string","name":"cid"}]}]},{"type":"bool","name":"exists"}]}]},{"type":"function","name":"getPatientsMedicalData","constant":true,"stateMutability":"view","payable":false,"gas":29000000,"inputs":[{"type":"address","name":"_patientAddress"}],"outputs":[{"type":"tuple[]","components":[{"type":"string","name":"hospital"},{"type":"address","name":"doctor"},{"type":"address","name":"patient"},{"type":"string","name":"diagnosis"},{"type":"string","name":"treatment"},{"type":"string","name":"medication"},{"type":"uint256","name":"date"},{"type":"tuple","name":"media","components":[{"type":"string","name":"description"},{"type":"string","name":"cid"}]}]}]},{"type":"function","name":"isAdmin","constant":true,"stateMutability":"view","payable":false,"gas":29000000,"inputs":[],"outputs":[{"type":"bool"}]},{"type":"function","name":"isDoctor","constant":true,"stateMutability":"view","payable":false,"gas":29000000,"inputs":[],"outputs":[{"type":"bool"}]},{"type":"function","name":"isOwner","constant":true,"stateMutability":"view","payable":false,"gas":29000000,"inputs":[],"outputs":[{"type":"bool"}]}]
+[
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "_adminAddress",
+        "type": "address"
+      },
+      {
+        "internalType": "string",
+        "name": "_firstName",
+        "type": "string"
+      },
+      {
+        "internalType": "string",
+        "name": "_lastName",
+        "type": "string"
+      },
+      {
+        "internalType": "string",
+        "name": "_phoneNumber",
+        "type": "string"
+      },
+      {
+        "internalType": "string",
+        "name": "_email",
+        "type": "string"
+      },
+      {
+        "internalType": "string",
+        "name": "_rAddress",
+        "type": "string"
+      }
+    ],
+    "name": "addAdmin",
+    "outputs": [
+      {
+        "components": [
+          {
+            "internalType": "string",
+            "name": "firstName",
+            "type": "string"
+          },
+          {
+            "internalType": "string",
+            "name": "lastName",
+            "type": "string"
+          },
+          {
+            "internalType": "string",
+            "name": "phoneNumber",
+            "type": "string"
+          },
+          {
+            "internalType": "string",
+            "name": "email",
+            "type": "string"
+          },
+          {
+            "internalType": "string",
+            "name": "rAddress",
+            "type": "string"
+          },
+          {
+            "internalType": "bool",
+            "name": "exists",
+            "type": "bool"
+          }
+        ],
+        "internalType": "struct DataStructure.Admin",
+        "name": "",
+        "type": "tuple"
+      }
+    ],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "_doctorAddress",
+        "type": "address"
+      },
+      {
+        "internalType": "string",
+        "name": "_firstName",
+        "type": "string"
+      },
+      {
+        "internalType": "string",
+        "name": "_lastName",
+        "type": "string"
+      },
+      {
+        "internalType": "string",
+        "name": "_phoneNumber",
+        "type": "string"
+      },
+      {
+        "internalType": "string",
+        "name": "_email",
+        "type": "string"
+      },
+      {
+        "internalType": "string",
+        "name": "_rAddress",
+        "type": "string"
+      },
+      {
+        "internalType": "enum DataStructure.Gender",
+        "name": "_gender",
+        "type": "uint8"
+      },
+      {
+        "internalType": "enum DataStructure.MedicalSpeciality",
+        "name": "_speciality",
+        "type": "uint8"
+      }
+    ],
+    "name": "addDoctor",
+    "outputs": [
+      {
+        "components": [
+          {
+            "internalType": "string",
+            "name": "firstName",
+            "type": "string"
+          },
+          {
+            "internalType": "string",
+            "name": "lastName",
+            "type": "string"
+          },
+          {
+            "internalType": "string",
+            "name": "phoneNumber",
+            "type": "string"
+          },
+          {
+            "internalType": "string",
+            "name": "email",
+            "type": "string"
+          },
+          {
+            "internalType": "string",
+            "name": "rAddress",
+            "type": "string"
+          },
+          {
+            "internalType": "enum DataStructure.Gender",
+            "name": "gender",
+            "type": "uint8"
+          },
+          {
+            "internalType": "enum DataStructure.MedicalSpeciality",
+            "name": "speciality",
+            "type": "uint8"
+          },
+          {
+            "internalType": "bool",
+            "name": "exists",
+            "type": "bool"
+          }
+        ],
+        "internalType": "struct DataStructure.Doctor",
+        "name": "",
+        "type": "tuple"
+      }
+    ],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "string",
+        "name": "_hospital",
+        "type": "string"
+      },
+      {
+        "internalType": "address",
+        "name": "_patient",
+        "type": "address"
+      },
+      {
+        "internalType": "address",
+        "name": "_doctor",
+        "type": "address"
+      },
+      {
+        "internalType": "string",
+        "name": "_treatment",
+        "type": "string"
+      },
+      {
+        "internalType": "string",
+        "name": "_diagnosis",
+        "type": "string"
+      },
+      {
+        "internalType": "string",
+        "name": "_medication",
+        "type": "string"
+      },
+      {
+        "internalType": "uint256",
+        "name": "_date",
+        "type": "uint256"
+      },
+      {
+        "internalType": "string",
+        "name": "_description",
+        "type": "string"
+      },
+      {
+        "internalType": "string",
+        "name": "_cid",
+        "type": "string"
+      }
+    ],
+    "name": "addMedicalData",
+    "outputs": [
+      {
+        "components": [
+          {
+            "internalType": "string",
+            "name": "hospital",
+            "type": "string"
+          },
+          {
+            "internalType": "address",
+            "name": "doctor",
+            "type": "address"
+          },
+          {
+            "internalType": "address",
+            "name": "patient",
+            "type": "address"
+          },
+          {
+            "internalType": "string",
+            "name": "diagnosis",
+            "type": "string"
+          },
+          {
+            "internalType": "string",
+            "name": "treatment",
+            "type": "string"
+          },
+          {
+            "internalType": "string",
+            "name": "medication",
+            "type": "string"
+          },
+          {
+            "internalType": "uint256",
+            "name": "date",
+            "type": "uint256"
+          },
+          {
+            "components": [
+              {
+                "internalType": "string",
+                "name": "description",
+                "type": "string"
+              },
+              {
+                "internalType": "string",
+                "name": "cid",
+                "type": "string"
+              }
+            ],
+            "internalType": "struct DataStructure.Media",
+            "name": "media",
+            "type": "tuple"
+          }
+        ],
+        "internalType": "struct DataStructure.MedicalData",
+        "name": "",
+        "type": "tuple"
+      }
+    ],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "_patientAddress",
+        "type": "address"
+      },
+      {
+        "internalType": "string",
+        "name": "_firstName",
+        "type": "string"
+      },
+      {
+        "internalType": "string",
+        "name": "_lastName",
+        "type": "string"
+      },
+      {
+        "internalType": "string",
+        "name": "_email",
+        "type": "string"
+      },
+      {
+        "internalType": "string",
+        "name": "_phoneNumber",
+        "type": "string"
+      },
+      {
+        "internalType": "string",
+        "name": "_rAddress",
+        "type": "string"
+      },
+      {
+        "internalType": "enum DataStructure.Gender",
+        "name": "_gender",
+        "type": "uint8"
+      }
+    ],
+    "name": "createPatient",
+    "outputs": [
+      {
+        "components": [
+          {
+            "internalType": "string",
+            "name": "firstName",
+            "type": "string"
+          },
+          {
+            "internalType": "string",
+            "name": "lastName",
+            "type": "string"
+          },
+          {
+            "internalType": "string",
+            "name": "email",
+            "type": "string"
+          },
+          {
+            "internalType": "string",
+            "name": "phoneNumber",
+            "type": "string"
+          },
+          {
+            "internalType": "string",
+            "name": "rAddress",
+            "type": "string"
+          },
+          {
+            "internalType": "enum DataStructure.Gender",
+            "name": "gender",
+            "type": "uint8"
+          },
+          {
+            "components": [
+              {
+                "internalType": "string",
+                "name": "hospital",
+                "type": "string"
+              },
+              {
+                "internalType": "address",
+                "name": "doctor",
+                "type": "address"
+              },
+              {
+                "internalType": "address",
+                "name": "patient",
+                "type": "address"
+              },
+              {
+                "internalType": "string",
+                "name": "diagnosis",
+                "type": "string"
+              },
+              {
+                "internalType": "string",
+                "name": "treatment",
+                "type": "string"
+              },
+              {
+                "internalType": "string",
+                "name": "medication",
+                "type": "string"
+              },
+              {
+                "internalType": "uint256",
+                "name": "date",
+                "type": "uint256"
+              },
+              {
+                "components": [
+                  {
+                    "internalType": "string",
+                    "name": "description",
+                    "type": "string"
+                  },
+                  {
+                    "internalType": "string",
+                    "name": "cid",
+                    "type": "string"
+                  }
+                ],
+                "internalType": "struct DataStructure.Media",
+                "name": "media",
+                "type": "tuple"
+              }
+            ],
+            "internalType": "struct DataStructure.MedicalData[]",
+            "name": "reports",
+            "type": "tuple[]"
+          },
+          {
+            "internalType": "bool",
+            "name": "exists",
+            "type": "bool"
+          }
+        ],
+        "internalType": "struct DataStructure.Patient",
+        "name": "",
+        "type": "tuple"
+      }
+    ],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "getCredentials",
+    "outputs": [
+      {
+        "internalType": "string",
+        "name": "",
+        "type": "string"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "_patientAddress",
+        "type": "address"
+      }
+    ],
+    "name": "getPatient",
+    "outputs": [
+      {
+        "components": [
+          {
+            "internalType": "string",
+            "name": "firstName",
+            "type": "string"
+          },
+          {
+            "internalType": "string",
+            "name": "lastName",
+            "type": "string"
+          },
+          {
+            "internalType": "string",
+            "name": "email",
+            "type": "string"
+          },
+          {
+            "internalType": "string",
+            "name": "phoneNumber",
+            "type": "string"
+          },
+          {
+            "internalType": "string",
+            "name": "rAddress",
+            "type": "string"
+          },
+          {
+            "internalType": "enum DataStructure.Gender",
+            "name": "gender",
+            "type": "uint8"
+          },
+          {
+            "components": [
+              {
+                "internalType": "string",
+                "name": "hospital",
+                "type": "string"
+              },
+              {
+                "internalType": "address",
+                "name": "doctor",
+                "type": "address"
+              },
+              {
+                "internalType": "address",
+                "name": "patient",
+                "type": "address"
+              },
+              {
+                "internalType": "string",
+                "name": "diagnosis",
+                "type": "string"
+              },
+              {
+                "internalType": "string",
+                "name": "treatment",
+                "type": "string"
+              },
+              {
+                "internalType": "string",
+                "name": "medication",
+                "type": "string"
+              },
+              {
+                "internalType": "uint256",
+                "name": "date",
+                "type": "uint256"
+              },
+              {
+                "components": [
+                  {
+                    "internalType": "string",
+                    "name": "description",
+                    "type": "string"
+                  },
+                  {
+                    "internalType": "string",
+                    "name": "cid",
+                    "type": "string"
+                  }
+                ],
+                "internalType": "struct DataStructure.Media",
+                "name": "media",
+                "type": "tuple"
+              }
+            ],
+            "internalType": "struct DataStructure.MedicalData[]",
+            "name": "reports",
+            "type": "tuple[]"
+          },
+          {
+            "internalType": "bool",
+            "name": "exists",
+            "type": "bool"
+          }
+        ],
+        "internalType": "struct DataStructure.Patient",
+        "name": "",
+        "type": "tuple"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "_patientAddress",
+        "type": "address"
+      }
+    ],
+    "name": "getPatientsMedicalData",
+    "outputs": [
+      {
+        "components": [
+          {
+            "internalType": "string",
+            "name": "hospital",
+            "type": "string"
+          },
+          {
+            "internalType": "address",
+            "name": "doctor",
+            "type": "address"
+          },
+          {
+            "internalType": "address",
+            "name": "patient",
+            "type": "address"
+          },
+          {
+            "internalType": "string",
+            "name": "diagnosis",
+            "type": "string"
+          },
+          {
+            "internalType": "string",
+            "name": "treatment",
+            "type": "string"
+          },
+          {
+            "internalType": "string",
+            "name": "medication",
+            "type": "string"
+          },
+          {
+            "internalType": "uint256",
+            "name": "date",
+            "type": "uint256"
+          },
+          {
+            "components": [
+              {
+                "internalType": "string",
+                "name": "description",
+                "type": "string"
+              },
+              {
+                "internalType": "string",
+                "name": "cid",
+                "type": "string"
+              }
+            ],
+            "internalType": "struct DataStructure.Media",
+            "name": "media",
+            "type": "tuple"
+          }
+        ],
+        "internalType": "struct DataStructure.MedicalData[]",
+        "name": "",
+        "type": "tuple[]"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "isAdmin",
+    "outputs": [
+      {
+        "internalType": "bool",
+        "name": "",
+        "type": "bool"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "isDoctor",
+    "outputs": [
+      {
+        "internalType": "bool",
+        "name": "",
+        "type": "bool"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "isOwner",
+    "outputs": [
+      {
+        "internalType": "bool",
+        "name": "",
+        "type": "bool"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  }
+]

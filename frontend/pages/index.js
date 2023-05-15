@@ -21,9 +21,12 @@ export default function Home() {
     async function fetchData() {
       let cred = await getCredentials()
       setCredentials(cred)
+      console.log(account + " is a " + credentials)
     }
-    fetchData()
+    if (account) {
+      fetchData()
+    }
   }, [account])
 
-  return <>{account ? <HomeLoggedIn /> : <HomeLoggedOut />}</>
+  return <>{account ? <HomeLoggedIn credentials={credentials} /> : <HomeLoggedOut />}</>
 }
