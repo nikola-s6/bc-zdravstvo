@@ -23,7 +23,7 @@ export default function Home() {
         onError: (error) => console.log(error),
       })
       setCredentials(cred)
-      console.log(account + " is a " + credentials)
+      // console.log(account + " is a " + credentials)
     }
     if (account) {
       fetchData()
