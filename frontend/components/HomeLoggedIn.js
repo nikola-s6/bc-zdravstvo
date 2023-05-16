@@ -2,6 +2,7 @@ import { useMoralis } from "react-moralis"
 import Search from "./Search"
 import OwnerMenu from "./OwnerMenu"
 import Loader from "./Loader"
+import AdminMenu from "./AdminMenu"
 
 export default function HomeLoggedIn({ credentials }) {
   const { account } = useMoralis()
@@ -16,7 +17,7 @@ export default function HomeLoggedIn({ credentials }) {
       case "admin":
         return (
           <div>
-            <div>admin menu</div>
+            <AdminMenu></AdminMenu>
             <Search></Search>
           </div>
         )
