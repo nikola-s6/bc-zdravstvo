@@ -3,11 +3,13 @@ import { useEffect } from "react"
 import { useNotification } from "web3uikit"
 import Link from "next/link"
 import Image from "next/image"
+import { useRouter } from "next/router"
 
 export default function Header() {
   const { enableWeb3, account, isWeb3Enabled, Moralis, deactivateWeb3, isWeb3EnableLoading } =
     useMoralis()
   const dispatch = useNotification()
+  const router = useRouter()
 
   useEffect(() => {
     if (isWeb3Enabled) {
@@ -26,7 +28,7 @@ export default function Header() {
       if (account == null) {
         window.localStorage.removeItem("connected")
         deactivateWeb3()
-        console.log("no account found")
+        router.push("/")
       }
     })
   }, [])

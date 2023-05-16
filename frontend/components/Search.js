@@ -6,9 +6,11 @@ export default function Search() {
   const [address, setAddress] = useState("")
   const router = useRouter()
 
-  const redirect = function () {
+  const redirect = function (e) {
+    e.preventDefault()
     router.push(`/patient/${address}`)
   }
+
   return (
     <div className="h-[70vh] flex flex-col pt-[10vh] items-center">
       <Image alt="logo" src="/logo2.png" width={500} height={200}></Image>

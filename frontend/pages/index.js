@@ -19,7 +19,9 @@ export default function Home() {
 
   useEffect(() => {
     async function fetchData() {
-      let cred = await getCredentials()
+      let cred = await getCredentials({
+        onError: (error) => console.log(error),
+      })
       setCredentials(cred)
       console.log(account + " is a " + credentials)
     }
