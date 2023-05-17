@@ -30,7 +30,6 @@ export default function DoctorCreate() {
         onError: (error) => console.log(error),
       })
       setCredentials(cred)
-      setLoaded(true)
       console.log(account + " is a " + credentials)
     }
     if (account) {

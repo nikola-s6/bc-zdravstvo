@@ -17,6 +17,7 @@ export default function CreateDoctorComponent() {
   const [residentialAddress, setResidentialAddress] = useState("")
   const [gender, setGender] = useState(0) //default value from selector
   const [specialty, setSpecialty] = useState(0)
+  const [isCreating, setIsCreating] = useState(false)
 
   const { Moralis } = useMoralis()
   const dispatch = useNotification()
@@ -49,6 +50,7 @@ export default function CreateDoctorComponent() {
         position: "bottomR",
         icon: "bell",
       })
+      setIsCreating(true)
 
       const transaction = await Moralis.executeFunction(sendOptions)
       const txReceipt = await transaction.wait()
@@ -62,6 +64,7 @@ export default function CreateDoctorComponent() {
         position: "bottomR",
         icon: "bell",
       })
+      setIsCreating(false)
     } catch (error) {
       console.log(error)
       dispatch({
@@ -71,6 +74,7 @@ export default function CreateDoctorComponent() {
         position: "bottomR",
         icon: "bell",
       })
+      setIsCreating(false)
     }
 
     if (document) {
@@ -249,6 +253,7 @@ export default function CreateDoctorComponent() {
           <button
             type="submit"
             className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+            disabled={isCreating}
           >
             Submit
           </button>

@@ -1,15 +1,12 @@
-import OwnerMenu from "@/components/OwnerMenu"
-import { abi, address } from "@/constants"
 import { useState } from "react"
+import { abi, address } from "@/constants"
 import { useMoralis } from "react-moralis"
 import { useNotification } from "web3uikit"
 
-export default function AdminCreate() {
+export default function CreatePatientComponent() {
   const { chainId: chainInHex } = useMoralis()
   const chainId = parseInt(chainInHex)
   const contractAddress = chainId in address ? address[chainId] : null
-
-  const dispatch = useNotification()
 
   const [walletAddress, setWalletAddress] = useState("")
   const [firstName, setFirstName] = useState("")
@@ -17,9 +14,11 @@ export default function AdminCreate() {
   const [email, setEmail] = useState("")
   const [phoneNumber, setPhoneNumber] = useState("")
   const [residentialAddress, setResidentialAddress] = useState("")
+  const [gender, setGender] = useState(0)
   const [isCreating, setIsCreating] = useState(false)
 
   const { Moralis } = useMoralis()
+  const dispatch = useNotification()
 
   const handleSubmit = async function (e) {
     e.preventDefault()
@@ -27,17 +26,19 @@ export default function AdminCreate() {
     const sendOptions = {
       abi: abi,
       contractAddress: contractAddress,
-      functionName: "addAdmin",
+      functionName: "createPatient",
       params: {
-        _adminAddress: walletAddress,
+        _patientAddress: walletAddress,
         _firstName: firstName,
         _lastName: lastName,
         _phoneNumber: email,
         _email: phoneNumber,
         _rAddress: residentialAddress,
+        _gender: gender,
       },
     }
     console.log(sendOptions)
+
     try {
       dispatch({
         type: "info",
@@ -55,11 +56,12 @@ export default function AdminCreate() {
 
       dispatch({
         type: "success",
-        message: "Admin is successfully added",
+        message: "Patient is successfully created",
         title: "Transaction complete",
         position: "bottomR",
         icon: "bell",
       })
+
       setIsCreating(false)
     } catch (error) {
       console.log(error)
@@ -81,9 +83,10 @@ export default function AdminCreate() {
 
   return (
     <>
-      <OwnerMenu></OwnerMenu>
       <div className="bg-white rounded-lg p-5 my-10 w-[80vw] mx-auto">
-        <h1 className="mb-5 border-double border-b-4 border-black text-xl mb-8">Create a admin:</h1>
+        <h1 className="mb-5 border-double border-b-4 border-black text-xl mb-8">
+          Create a patient:
+        </h1>
         <form className="text-black" onSubmit={handleSubmit} id="form">
           <div className="relative z-0 w-full mb-6 group">
             <input
@@ -203,6 +206,28 @@ export default function AdminCreate() {
               >
                 Residential address
               </label>
+            </div>
+          </div>
+          <div className="grid md:grid-cols-2 md:gap-6">
+            <div className="relative z-0 w-full mb-6 group">
+              <label
+                htmlFor="gend"
+                className="block mb-2 text-sm font-medium text-gray-900 dark:text-black"
+              >
+                Select gender
+              </label>
+              <select
+                id="gend"
+                className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                onChange={(e) => setGender(parseInt(e.target.value))}
+              >
+                <option value="0" key="g0">
+                  Male
+                </option>
+                <option value="1" key="g1">
+                  Female
+                </option>
+              </select>
             </div>
           </div>
           <button
