@@ -11,7 +11,17 @@ export default function PatientRecords({ records }) {
     let day = date.getDay()
     let hours = date.getHours()
     let minutes = date.getMinutes()
-    return day + "-" + month + "-" + year + " " + hours + ":" + minutes
+    return (
+      ("0" + day).slice(-2) +
+      "-" +
+      ("0" + month).slice(-2) +
+      "-" +
+      year +
+      " " +
+      ("0" + hours).slice(-2) +
+      ":" +
+      ("0" + minutes).slice(-2)
+    )
   }
 
   return (
