@@ -5,7 +5,7 @@ import { useRouter } from "next/router"
 import Loader from "./Loader"
 import AddPatientRecordModal from "./AddPatientRecordModal"
 
-export default function PatientData() {
+export default function PatientData({ credentials }) {
   const router = useRouter()
   const [patientAddress, setPatientAddress] = useState(router.query.id)
   const [firstName, setFirstName] = useState("")
@@ -127,6 +127,15 @@ export default function PatientData() {
                       scope="row"
                       class="px-6 py-4 font-medium text-blue-50 whitespace-nowrap dark:text-blue-100"
                     >
+                      Gender
+                    </th>
+                    <td class="px-6 py-4">{gender == 0 ? "Male" : "Female"}</td>
+                  </tr>
+                  <tr class="bg-blue-500 border-b border-blue-400">
+                    <th
+                      scope="row"
+                      class="px-6 py-4 font-medium text-blue-50 whitespace-nowrap dark:text-blue-100"
+                    >
                       Email
                     </th>
                     <td class="px-6 py-4">{email}</td>
@@ -153,7 +162,12 @@ export default function PatientData() {
               </table>
             </div>
           </div>
-          <AddPatientRecordModal></AddPatientRecordModal>
+          <AddPatientRecordModal
+            abi={abi}
+            contractAddress={contractAddress}
+            patientAddress={patientAddress}
+            credentials={credentials}
+          ></AddPatientRecordModal>
         </>
       )
     }

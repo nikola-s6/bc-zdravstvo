@@ -1,10 +1,22 @@
 import { useRouter } from "next/router"
 import { useRef, useState } from "react"
 import { useMoralis } from "react-moralis"
-import { Modal, Typography } from "web3uikit"
+import { Modal, Typography, useNotification } from "web3uikit"
+import { Web3Storage } from "web3.storage"
 
-export default function AddPatientRecordModal() {
+export default function AddPatientRecordModal({
+  abi,
+  contractAddress,
+  patientAddress,
+  credentials,
+}) {
+  const [hospital, setHospital] = useState("")
+  const [diagnosis, setDiagnosis] = useState("")
+  const [treatment, setTreatment] = useState("")
+  const [medication, setMedication] = useState("")
   const [media, setMedia] = useState([])
+  const [mediaDescription, setMediaDescription] = useState("")
+  const [transactionWaiting, setTransactionWaiting] = useState(false)
   const inputRef = useRef()
 
   const [modalOpen, setModalOpen] = useState(false)
@@ -12,26 +24,113 @@ export default function AddPatientRecordModal() {
     setModalOpen(!modalOpen)
   }
 
-  const { account } = useMoralis()
+  const { account, Moralis } = useMoralis()
 
   const router = useRouter()
+  const dispatch = useNotification()
+
+  function getAccessToken() {
+    return process.env.NEXT_PUBLIC_WEB3STORAGE_API_KEY
+  }
+
+  function makeStorageClient() {
+    return new Web3Storage({ token: getAccessToken() })
+  }
+
+  async function storeFiles() {
+    const client = makeStorageClient()
+    const cid = await client.put(media)
+    return cid
+  }
 
   const handleModalSubmit = async function (e) {
     e.preventDefault()
-    console.log(media)
+    toggleModal()
+    setTransactionWaiting(true)
+
+    dispatch({
+      type: "info",
+      message: "Waiting for transaction...",
+      title: "Transaction started",
+      position: "bottomR",
+      icon: "bell",
+    })
+
+    try {
+      const cid = await storeFiles()
+      console.log(cid)
+
+      let timestamp = Math.floor(new Date().getTime() / 1000) //unix time
+      const sendOptions = {
+        abi: abi,
+        contractAddress: contractAddress,
+        functionName: "addMedicalData",
+        params: {
+          _hospital: hospital,
+          _patient: patientAddress,
+          _doctor: account,
+          _treatment: treatment,
+          _diagnosis: diagnosis,
+          _medication: medication,
+          _date: timestamp,
+          _cid: cid,
+          _description: mediaDescription,
+        },
+      }
+
+      const transaction = await Moralis.executeFunction(sendOptions)
+      const txReceipt = await transaction.wait()
+      console.log(transaction)
+      console.log(txReceipt)
+
+      dispatch({
+        type: "success",
+        message: "Record is successfully added",
+        title: "Transaction complete",
+        position: "bottomR",
+        icon: "bell",
+      })
+
+      setTransactionWaiting(false)
+      e.target.reset()
+    } catch (error) {
+      console.log(error)
+      dispatch({
+        type: "error",
+        message: "Transaction reverted",
+        title: "Error",
+        position: "bottomR",
+        icon: "bell",
+      })
+      setTransactionWaiting(false)
+      e.target.reset()
+    }
+
+    // console.log(sendOptions)
+    console.log(process.env.WEB3STORAGE_API_KEY)
+  }
+
+  const buttonFunc = function () {
+    if (credentials == "doctor") {
+      return (
+        <div className="px-50 flex flex-col items-center">
+          <button
+            type="button"
+            className="mt-5 focus:outline-none text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800"
+            onClick={toggleModal}
+          >
+            Add patient record
+          </button>{" "}
+        </div>
+      )
+    } else {
+      return <></>
+    }
   }
 
   return (
     <>
-      <div className="px-50 flex flex-col items-center">
-        <button
-          type="button"
-          className="mt-5 focus:outline-none text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800"
-          onClick={toggleModal}
-        >
-          Add patient record
-        </button>
-      </div>
+      {buttonFunc()}
       <div className="absolute top-0 left-0">
         <Modal
           cancelText="close"
@@ -69,7 +168,7 @@ export default function AddPatientRecordModal() {
                   id="patient"
                   className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-black dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
                   placeholder=" "
-                  defaultValue={router.query.id}
+                  defaultValue={patientAddress}
                   disabled
                   readOnly
                 />
@@ -105,6 +204,7 @@ export default function AddPatientRecordModal() {
                   id="hospital"
                   className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-black dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
                   placeholder=" "
+                  onChange={(e) => setHospital(e.target.value)}
                   required
                 />
                 <label
@@ -116,30 +216,32 @@ export default function AddPatientRecordModal() {
               </div>
               <div className="relative z-0 w-full mb-6 group">
                 <label
-                  for="diagnosis"
-                  class="block mb-2 text-sm font-medium text-gray-900 dark:text-black"
+                  htmlFor="diagnosis"
+                  className="block mb-2 text-sm font-medium text-gray-900 dark:text-black"
                 >
                   Diagnosis
                 </label>
                 <textarea
                   id="dianosis"
                   rows="4"
-                  class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-white dark:border-gray-600 dark:placeholder-gray-400 dark:text-black dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                  className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-white dark:border-gray-600 dark:placeholder-gray-400 dark:text-black dark:focus:ring-blue-500 dark:focus:border-blue-500"
                   placeholder="Write patient's diagnosis here..."
+                  onChange={(e) => setDiagnosis(e.target.value)}
                 ></textarea>
               </div>
               <div className="relative z-0 w-full mb-6 group">
                 <label
-                  for="treatment"
-                  class="block mb-2 text-sm font-medium text-gray-900 dark:text-black"
+                  htmlFor="treatment"
+                  className="block mb-2 text-sm font-medium text-gray-900 dark:text-black"
                 >
                   Treatment
                 </label>
                 <textarea
                   id="treatment"
                   rows="4"
-                  class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-white dark:border-gray-600 dark:placeholder-gray-400 dark:text-black dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                  className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-white dark:border-gray-600 dark:placeholder-gray-400 dark:text-black dark:focus:ring-blue-500 dark:focus:border-blue-500"
                   placeholder="Write patient's treatment here..."
+                  onChange={(e) => setTreatment(e.target.value)}
                 ></textarea>
               </div>
               <div className="relative z-0 w-full mb-6 group">
@@ -149,6 +251,7 @@ export default function AddPatientRecordModal() {
                   id="medication"
                   className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-black dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
                   placeholder=" "
+                  onChange={(e) => setMedication(e.target.value)}
                 />
                 <label
                   htmlFor="medication"
@@ -173,8 +276,23 @@ export default function AddPatientRecordModal() {
                 onChange={() => setMedia(inputRef.current.files)}
               />
               <div className="text-xs">{media.length} files uploaded!</div>
+              <div className="relative z-0 w-full mb-6 group">
+                <label
+                  htmlFor="description"
+                  className="block mb-2 text-sm font-medium text-gray-900 dark:text-black"
+                >
+                  Media files description
+                </label>
+                <textarea
+                  id="description"
+                  rows="4"
+                  className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-white dark:border-gray-600 dark:placeholder-gray-400 dark:text-black dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                  placeholder="Write patient's treatment here..."
+                  onChange={(e) => setMediaDescription(e.target.value)}
+                ></textarea>
+              </div>
 
-              <button type="submit" id="btnsbmt" className="hidden">
+              <button type="submit" id="btnsbmt" className="hidden" disabled={transactionWaiting}>
                 hidden submit
               </button>
             </form>

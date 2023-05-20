@@ -46,7 +46,7 @@ export default function Patient() {
   return (
     <div>
       {getMenu()}
-      <PatientData></PatientData>
+      <PatientData credentials={credentials}></PatientData>
     </div>
   )
 }
