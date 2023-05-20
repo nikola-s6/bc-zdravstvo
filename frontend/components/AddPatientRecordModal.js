@@ -120,7 +120,7 @@ export default function AddPatientRecordModal({
             onClick={toggleModal}
           >
             Add patient record
-          </button>{" "}
+          </button>
         </div>
       )
     } else {

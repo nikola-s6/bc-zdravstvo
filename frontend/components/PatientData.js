@@ -4,6 +4,7 @@ import { abi, address } from "@/constants"
 import { useRouter } from "next/router"
 import Loader from "./Loader"
 import AddPatientRecordModal from "./AddPatientRecordModal"
+import PatientRecords from "./PatientRecords"
 
 export default function PatientData({ credentials }) {
   const router = useRouter()
@@ -82,6 +83,7 @@ export default function PatientData({ credentials }) {
         <>
           {/* TABLE WITH PATIENT DATA */}
           <div className="flex flex-col justify-center mx-[15vw] mt-20">
+            <h1 className="text-xl mb-4">Patient data:</h1>
             <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
               <table class="w-full text-sm text-left text-blue-100 dark:text-blue-100">
                 <thead class="text-xs text-white uppercase bg-blue-600 dark:text-white">
@@ -162,6 +164,7 @@ export default function PatientData({ credentials }) {
               </table>
             </div>
           </div>
+          <PatientRecords records={reports}></PatientRecords>
           <AddPatientRecordModal
             abi={abi}
             contractAddress={contractAddress}
