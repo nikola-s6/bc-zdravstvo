@@ -30,7 +30,6 @@ export default function DoctorCreate() {
         onError: (error) => console.log(error),
       })
       setCredentials(cred)
-      console.log(account + " is a " + credentials)
     }
     if (account) {
       fetchData()
@@ -47,10 +46,14 @@ export default function DoctorCreate() {
     }
   }
 
-  return (
-    <>
-      {getMenu()}
-      <CreateDoctorComponent></CreateDoctorComponent>
-    </>
-  )
+  if (account) {
+    return (
+      <>
+        {getMenu()}
+        <CreateDoctorComponent></CreateDoctorComponent>
+      </>
+    )
+  } else {
+    return <h1>You don't have permission, you are not logged in!!!</h1>
+  }
 }

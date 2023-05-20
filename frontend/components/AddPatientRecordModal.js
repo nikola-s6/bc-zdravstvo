@@ -9,6 +9,7 @@ export default function AddPatientRecordModal({
   contractAddress,
   patientAddress,
   credentials,
+  reloadRecords,
 }) {
   const [hospital, setHospital] = useState("")
   const [diagnosis, setDiagnosis] = useState("")
@@ -93,6 +94,8 @@ export default function AddPatientRecordModal({
 
       setTransactionWaiting(false)
       e.target.reset()
+
+      reloadRecords()
     } catch (error) {
       console.log(error)
       dispatch({

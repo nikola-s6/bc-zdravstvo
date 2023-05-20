@@ -1,14 +1,11 @@
 import { useState, useEffect } from "react"
 import { useMoralis, useWeb3Contract } from "react-moralis"
 import { abi, address } from "@/constants"
-import { useRouter } from "next/router"
 import Loader from "./Loader"
 import AddPatientRecordModal from "./AddPatientRecordModal"
 import PatientRecords from "./PatientRecords"
 
-export default function PatientData({ credentials }) {
-  const router = useRouter()
-  const [patientAddress, setPatientAddress] = useState(router.query.id)
+export default function PatientData({ credentials, patientAddress }) {
   const [firstName, setFirstName] = useState("")
   const [lastName, setLastname] = useState("")
   const [phoneNum, setPhoneNum] = useState("")
@@ -31,35 +28,56 @@ export default function PatientData({ credentials }) {
     params: { _patientAddress: patientAddress },
   })
 
+  const { runContractFunction: getPatientRecords } = useWeb3Contract({
+    abi: abi,
+    contractAddress: contractAddress,
+    functionName: "getPatientsMedicalData",
+    params: { _patientAddress: patientAddress },
+  })
+
   useEffect(() => {
     async function fetchPatientData() {
-      console.log(isWeb3Enabled)
       if (!isWeb3Enabled) {
         await enableWeb3()
         await authenticate()
       }
-      console.log(router.query.id)
-      setPatientAddress(router.query.id)
-      let data = await getPatient({
-        onError: (error) => console.log(error),
-      })
-      console.log(data)
-      setLoaded(true)
-      if (data) {
-        setExists(data.exists)
-        setFirstName(data.firstName)
-        setLastname(data.lastName)
-        setEmail(data.email)
-        setPhoneNum(data.phoneNumber)
-        setRAddress(data.rAddress)
-        setGender(data.gender)
-        setReports(data.reports)
+      try {
+        let data = await getPatient({
+          onError: (error) => {
+            throw new Error(error)
+          },
+        })
+        console.log(data)
+        if (data) {
+          setExists(data.exists)
+          setFirstName(data.firstName)
+          setLastname(data.lastName)
+          setEmail(data.email)
+          setPhoneNum(data.phoneNumber)
+          setRAddress(data.rAddress)
+          setGender(data.gender)
+          setReports(data.reports)
+        }
+        setLoaded(true)
+      } catch (error) {
+        console.log(error)
       }
     }
-    if (router.isReady) {
-      fetchPatientData()
+    fetchPatientData()
+  }, [patientAddress])
+
+  const reloadRecords = async function () {
+    try {
+      let records = await getPatientRecords({
+        onError: (error) => {
+          throw new Error(error)
+        },
+      })
+      setReports(records)
+    } catch (error) {
+      console.log(error)
     }
-  }, [router.isReady, patientAddress])
+  }
 
   if (!loaded) {
     return <Loader></Loader>
@@ -164,13 +182,14 @@ export default function PatientData({ credentials }) {
               </table>
             </div>
           </div>
-          <PatientRecords records={reports}></PatientRecords>
           <AddPatientRecordModal
             abi={abi}
             contractAddress={contractAddress}
             patientAddress={patientAddress}
             credentials={credentials}
+            reloadRecords={reloadRecords}
           ></AddPatientRecordModal>
+          <PatientRecords records={reports}></PatientRecords>
         </>
       )
     }

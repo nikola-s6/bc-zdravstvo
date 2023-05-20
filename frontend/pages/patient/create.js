@@ -43,10 +43,14 @@ export default function PatientCreate() {
     }
   }
 
-  return (
-    <>
-      {getMenu()}
-      <CreatePatientComponent></CreatePatientComponent>
-    </>
-  )
+  if (account) {
+    return (
+      <>
+        {getMenu()}
+        <CreatePatientComponent></CreatePatientComponent>
+      </>
+    )
+  } else {
+    return <h1>You don't have permission, you are not logged in!!!</h1>
+  }
 }

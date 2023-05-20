@@ -2,9 +2,7 @@ import { useEffect, useState } from "react"
 import { Tab, TabList } from "web3uikit"
 
 export default function PatientRecords({ records }) {
-  useEffect(() => {
-    console.log("promena")
-  }, [records])
+  useEffect(() => {}, [records])
 
   const unixToRegular = function (unix) {
     let date = new Date(unix * 1000)
@@ -21,7 +19,7 @@ export default function PatientRecords({ records }) {
       <h1 className="text-xl mb-4">Patient records:</h1>
       <TabList isWidthAuto onChange={function noRefCheck() {}} tabStyle="bulbUnion">
         {records.map((record, index) => (
-          <Tab tabKey={index + 1} tabName={"Record " + index + 1}>
+          <Tab tabKey={index + 1} tabName={"Record " + (index + 1)}>
             <div className="flex flex-col">
               <div className="mb-3">
                 <h2 className="text-xl text-black">Hospital:</h2>
@@ -31,9 +29,7 @@ export default function PatientRecords({ records }) {
                 <h2 className="text-xl text-black">Doctor:</h2>
                 <p>{record.doctor}</p>
               </div>
-              <div>
-                {" "}
-                className="mb-3"
+              <div className="mb-3">
                 <h2 className="text-xl text-black">Date:</h2>
                 <p>{unixToRegular(record.date)}</p>
               </div>
@@ -45,9 +41,7 @@ export default function PatientRecords({ records }) {
                 <h2 className="text-xl text-black">Treatment:</h2>
                 <p>{record.treatment}</p>
               </div>
-              <div>
-                {" "}
-                className="mb-3"
+              <div className="mb-3">
                 <h2 className="text-xl text-black">Medication:</h2>
                 <p>{record.medication}</p>
               </div>
