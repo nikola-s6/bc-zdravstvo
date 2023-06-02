@@ -7,8 +7,8 @@ export default function PatientRecords({ records }) {
   const unixToRegular = function (unix) {
     let date = new Date(unix * 1000)
     let year = date.getFullYear()
-    let month = date.getMonth()
-    let day = date.getDay()
+    let month = date.getMonth() + 1
+    let day = date.getDate()
     let hours = date.getHours()
     let minutes = date.getMinutes()
     return (
