@@ -6,7 +6,7 @@ export default function HomeLoggedOut() {
         A decentralized blockchain platform for storing electronic health records
       </h3>
       <div className="border-double border-4 border-black rounded-md mt-[20vh] text-2xl animate-bounce">
-        Connecto to your metamask wallet to continue...
+        Connect to your metamask wallet to continue...
       </div>
     </div>
   )
