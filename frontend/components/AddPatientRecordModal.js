@@ -58,8 +58,16 @@ export default function AddPatientRecordModal({
     })
 
     try {
-      const cid = await storeFiles()
-      console.log(cid)
+      var cid = ""
+      console.log(media.length)
+      if (media.length > 0) {
+        cid = await storeFiles()
+        console.log(cid)
+      }
+
+      if (cid === "") {
+        cid = "none"
+      }
 
       let timestamp = Math.floor(new Date().getTime() / 1000) //unix time
       const sendOptions = {
@@ -75,7 +83,7 @@ export default function AddPatientRecordModal({
           _medication: medication,
           _date: timestamp,
           _cid: cid,
-          _description: mediaDescription,
+          _description: mediaDescription || "none",
         },
       }
 
