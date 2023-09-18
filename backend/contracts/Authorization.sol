@@ -2,14 +2,20 @@
 pragma solidity ^0.8.0;
 
 import "./DataStructure.sol";
+import "@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol";
+import "@openzeppelin/contracts-upgradeable/access/OwnableUpgradeable.sol";
 
-contract Authorization is DataStructure {
-    address private owner;
+contract Authorization is DataStructure, Initializable, OwnableUpgradeable {
+    // address private owner;
     mapping(address => Admin) private admins;
     mapping(address => Doctor) internal doctors;
 
-    constructor() {
-        owner = msg.sender;
+    // constructor() {
+    //     owner = msg.sender;
+    // }
+
+    function __Authorization_init() public onlyInitializing {
+        __Ownable_init();
     }
 
     function addAdmin(
@@ -57,7 +63,7 @@ contract Authorization is DataStructure {
     }
 
     function isOwner() public view returns (bool) {
-        return owner == msg.sender;
+        return owner() == msg.sender;
     }
 
     function isAdmin() public view returns (bool) {
@@ -69,10 +75,10 @@ contract Authorization is DataStructure {
     }
 
     // Modifiers created based on use cases needs
-    modifier onlyOwner() {
-        require(isOwner(), "Access restricted to owner only!");
-        _;
-    }
+    // modifier onlyOwner() {
+    //     require(isOwner(), "Access restricted to owner only!");
+    //     _;
+    // }
 
     modifier onlyDoctor() {
         require(isDoctor(), "Access restricted to doctor only!");
@@ -102,4 +108,6 @@ contract Authorization is DataStructure {
         );
         _;
     }
+
+    uint256[49] private __gap;
 }

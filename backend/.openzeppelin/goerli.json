@@ -1,0 +1,1272 @@
+{
+  "manifestVersion": "3.2",
+  "proxies": [
+    {
+      "address": "0xf7014c950F74e5D9a1736dd96f6D6BA28220E118",
+      "txHash": "0x6d09f374cdad7072d93ef8e6fd17a03165c17b3bc41f73aac32525e645010d42",
+      "kind": "uups"
+    },
+    {
+      "address": "0x1525C8bEd1Bb94242a153d9A5ED2E96C07739adA",
+      "txHash": "0xa96afbc008092e589b68df44c25b4bf1f5f22b438f943ca95d1b4c756fbb699a",
+      "kind": "uups"
+    }
+  ],
+  "impls": {
+    "34607a4ffe54cc49bdf04ae349d8860a3043bf3a718e41a7cb439802e73fa3cc": {
+      "address": "0x4b0AfcBFc7D46f34E5943ee0cDc281b362889484",
+      "txHash": "0x9e07ea74b5b184510f35394ba63e7fe0cd5429348541b603b5e2377395aa1b3e",
+      "layout": {
+        "solcVersion": "0.8.18",
+        "storage": [
+          {
+            "label": "_initialized",
+            "offset": 0,
+            "slot": "0",
+            "type": "t_uint8",
+            "contract": "Initializable",
+            "src": "@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol:63",
+            "retypedFrom": "bool"
+          },
+          {
+            "label": "_initializing",
+            "offset": 1,
+            "slot": "0",
+            "type": "t_bool",
+            "contract": "Initializable",
+            "src": "@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol:68"
+          },
+          {
+            "label": "__gap",
+            "offset": 0,
+            "slot": "1",
+            "type": "t_array(t_uint256)50_storage",
+            "contract": "ContextUpgradeable",
+            "src": "@openzeppelin/contracts-upgradeable/utils/ContextUpgradeable.sol:36"
+          },
+          {
+            "label": "_owner",
+            "offset": 0,
+            "slot": "51",
+            "type": "t_address",
+            "contract": "OwnableUpgradeable",
+            "src": "@openzeppelin/contracts-upgradeable/access/OwnableUpgradeable.sol:22"
+          },
+          {
+            "label": "__gap",
+            "offset": 0,
+            "slot": "52",
+            "type": "t_array(t_uint256)49_storage",
+            "contract": "OwnableUpgradeable",
+            "src": "@openzeppelin/contracts-upgradeable/access/OwnableUpgradeable.sol:94"
+          },
+          {
+            "label": "admins",
+            "offset": 0,
+            "slot": "101",
+            "type": "t_mapping(t_address,t_struct(Admin)1020_storage)",
+            "contract": "Authorization",
+            "src": "contracts/Authorization.sol:10"
+          },
+          {
+            "label": "doctors",
+            "offset": 0,
+            "slot": "102",
+            "type": "t_mapping(t_address,t_struct(Doctor)1039_storage)",
+            "contract": "Authorization",
+            "src": "contracts/Authorization.sol:11"
+          },
+          {
+            "label": "__gap",
+            "offset": 0,
+            "slot": "103",
+            "type": "t_array(t_uint256)49_storage",
+            "contract": "Authorization",
+            "src": "contracts/Authorization.sol:112"
+          },
+          {
+            "label": "patients",
+            "offset": 0,
+            "slot": "152",
+            "type": "t_mapping(t_address,t_struct(Patient)1077_storage)",
+            "contract": "HealthRecords",
+            "src": "contracts/HealthRecords.sol:9"
+          },
+          {
+            "label": "__gap",
+            "offset": 0,
+            "slot": "153",
+            "type": "t_array(t_uint256)49_storage",
+            "contract": "HealthRecords",
+            "src": "contracts/HealthRecords.sol:97"
+          }
+        ],
+        "types": {
+          "t_address": {
+            "label": "address",
+            "numberOfBytes": "20"
+          },
+          "t_array(t_struct(MedicalData)1057_storage)dyn_storage": {
+            "label": "struct DataStructure.MedicalData[]",
+            "numberOfBytes": "32"
+          },
+          "t_array(t_uint256)49_storage": {
+            "label": "uint256[49]",
+            "numberOfBytes": "1568"
+          },
+          "t_array(t_uint256)50_storage": {
+            "label": "uint256[50]",
+            "numberOfBytes": "1600"
+          },
+          "t_bool": {
+            "label": "bool",
+            "numberOfBytes": "1"
+          },
+          "t_enum(Gender)960": {
+            "label": "enum DataStructure.Gender",
+            "members": [
+              "Male",
+              "Female"
+            ],
+            "numberOfBytes": "1"
+          },
+          "t_enum(MedicalSpeciality)1002": {
+            "label": "enum DataStructure.MedicalSpeciality",
+            "members": [
+              "Anesthesia",
+              "Cardiovascular",
+              "CommunityHealth",
+              "Dentistry",
+              "Dermatology",
+              "DietNutrition",
+              "Emergency",
+              "Endocrine",
+              "Gastroenterologic",
+              "Genetic",
+              "Geriatric",
+              "Gynecologic",
+              "Hematologic",
+              "Infectious",
+              "LaboratoryScience",
+              "Midwifery",
+              "Musculoskeletal",
+              "Neurologic",
+              "Nursing",
+              "Obstetric",
+              "Oncologic",
+              "Optometric",
+              "Otolaryngologic",
+              "Pathology",
+              "Pediatric",
+              "PharmacySpecialty",
+              "Physiotherapy",
+              "PlasticSurgery",
+              "Podiatric",
+              "PrimaryCare",
+              "Psychiatric",
+              "PublicHealth",
+              "Pulmonary",
+              "Radiography",
+              "Renal",
+              "RespiratoryTherapy",
+              "Rheumatologic",
+              "SpeechPathology",
+              "Surgical",
+              "Toxicologic",
+              "Urologic"
+            ],
+            "numberOfBytes": "1"
+          },
+          "t_mapping(t_address,t_struct(Admin)1020_storage)": {
+            "label": "mapping(address => struct DataStructure.Admin)",
+            "numberOfBytes": "32"
+          },
+          "t_mapping(t_address,t_struct(Doctor)1039_storage)": {
+            "label": "mapping(address => struct DataStructure.Doctor)",
+            "numberOfBytes": "32"
+          },
+          "t_mapping(t_address,t_struct(Patient)1077_storage)": {
+            "label": "mapping(address => struct DataStructure.Patient)",
+            "numberOfBytes": "32"
+          },
+          "t_string_storage": {
+            "label": "string",
+            "numberOfBytes": "32"
+          },
+          "t_struct(Admin)1020_storage": {
+            "label": "struct DataStructure.Admin",
+            "members": [
+              {
+                "label": "firstName",
+                "type": "t_string_storage",
+                "offset": 0,
+                "slot": "0"
+              },
+              {
+                "label": "lastName",
+                "type": "t_string_storage",
+                "offset": 0,
+                "slot": "1"
+              },
+              {
+                "label": "phoneNumber",
+                "type": "t_string_storage",
+                "offset": 0,
+                "slot": "2"
+              },
+              {
+                "label": "email",
+                "type": "t_string_storage",
+                "offset": 0,
+                "slot": "3"
+              },
+              {
+                "label": "rAddress",
+                "type": "t_string_storage",
+                "offset": 0,
+                "slot": "4"
+              },
+              {
+                "label": "exists",
+                "type": "t_bool",
+                "offset": 0,
+                "slot": "5"
+              }
+            ],
+            "numberOfBytes": "192"
+          },
+          "t_struct(Doctor)1039_storage": {
+            "label": "struct DataStructure.Doctor",
+            "members": [
+              {
+                "label": "firstName",
+                "type": "t_string_storage",
+                "offset": 0,
+                "slot": "0"
+              },
+              {
+                "label": "lastName",
+                "type": "t_string_storage",
+                "offset": 0,
+                "slot": "1"
+              },
+              {
+                "label": "phoneNumber",
+                "type": "t_string_storage",
+                "offset": 0,
+                "slot": "2"
+              },
+              {
+                "label": "email",
+                "type": "t_string_storage",
+                "offset": 0,
+                "slot": "3"
+              },
+              {
+                "label": "rAddress",
+                "type": "t_string_storage",
+                "offset": 0,
+                "slot": "4"
+              },
+              {
+                "label": "gender",
+                "type": "t_enum(Gender)960",
+                "offset": 0,
+                "slot": "5"
+              },
+              {
+                "label": "speciality",
+                "type": "t_enum(MedicalSpeciality)1002",
+                "offset": 1,
+                "slot": "5"
+              },
+              {
+                "label": "exists",
+                "type": "t_bool",
+                "offset": 2,
+                "slot": "5"
+              }
+            ],
+            "numberOfBytes": "192"
+          },
+          "t_struct(Media)1007_storage": {
+            "label": "struct DataStructure.Media",
+            "members": [
+              {
+                "label": "description",
+                "type": "t_string_storage",
+                "offset": 0,
+                "slot": "0"
+              },
+              {
+                "label": "cid",
+                "type": "t_string_storage",
+                "offset": 0,
+                "slot": "1"
+              }
+            ],
+            "numberOfBytes": "64"
+          },
+          "t_struct(MedicalData)1057_storage": {
+            "label": "struct DataStructure.MedicalData",
+            "members": [
+              {
+                "label": "hospital",
+                "type": "t_string_storage",
+                "offset": 0,
+                "slot": "0"
+              },
+              {
+                "label": "doctor",
+                "type": "t_address",
+                "offset": 0,
+                "slot": "1"
+              },
+              {
+                "label": "patient",
+                "type": "t_address",
+                "offset": 0,
+                "slot": "2"
+              },
+              {
+                "label": "diagnosis",
+                "type": "t_string_storage",
+                "offset": 0,
+                "slot": "3"
+              },
+              {
+                "label": "treatment",
+                "type": "t_string_storage",
+                "offset": 0,
+                "slot": "4"
+              },
+              {
+                "label": "medication",
+                "type": "t_string_storage",
+                "offset": 0,
+                "slot": "5"
+              },
+              {
+                "label": "date",
+                "type": "t_uint256",
+                "offset": 0,
+                "slot": "6"
+              },
+              {
+                "label": "media",
+                "type": "t_struct(Media)1007_storage",
+                "offset": 0,
+                "slot": "7"
+              }
+            ],
+            "numberOfBytes": "288"
+          },
+          "t_struct(Patient)1077_storage": {
+            "label": "struct DataStructure.Patient",
+            "members": [
+              {
+                "label": "firstName",
+                "type": "t_string_storage",
+                "offset": 0,
+                "slot": "0"
+              },
+              {
+                "label": "lastName",
+                "type": "t_string_storage",
+                "offset": 0,
+                "slot": "1"
+              },
+              {
+                "label": "email",
+                "type": "t_string_storage",
+                "offset": 0,
+                "slot": "2"
+              },
+              {
+                "label": "phoneNumber",
+                "type": "t_string_storage",
+                "offset": 0,
+                "slot": "3"
+              },
+              {
+                "label": "rAddress",
+                "type": "t_string_storage",
+                "offset": 0,
+                "slot": "4"
+              },
+              {
+                "label": "gender",
+                "type": "t_enum(Gender)960",
+                "offset": 0,
+                "slot": "5"
+              },
+              {
+                "label": "reports",
+                "type": "t_array(t_struct(MedicalData)1057_storage)dyn_storage",
+                "offset": 0,
+                "slot": "6"
+              },
+              {
+                "label": "exists",
+                "type": "t_bool",
+                "offset": 0,
+                "slot": "7"
+              }
+            ],
+            "numberOfBytes": "256"
+          },
+          "t_uint256": {
+            "label": "uint256",
+            "numberOfBytes": "32"
+          },
+          "t_uint8": {
+            "label": "uint8",
+            "numberOfBytes": "1"
+          }
+        }
+      }
+    },
+    "334d677ba3b071e60b8c12aa7cf1da994e660ad96103100854379b11c0e809d3": {
+      "address": "0xa9AB7a91fe1F3dbC5644506EaAd8f8D886d522d8",
+      "txHash": "0x61800ffaeafcf3c237a5622bc14e154c483166cee98cff1aafd2b70d3ec9ba67",
+      "layout": {
+        "solcVersion": "0.8.18",
+        "storage": [
+          {
+            "label": "_initialized",
+            "offset": 0,
+            "slot": "0",
+            "type": "t_uint8",
+            "contract": "Initializable",
+            "src": "@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol:63",
+            "retypedFrom": "bool"
+          },
+          {
+            "label": "_initializing",
+            "offset": 1,
+            "slot": "0",
+            "type": "t_bool",
+            "contract": "Initializable",
+            "src": "@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol:68"
+          },
+          {
+            "label": "__gap",
+            "offset": 0,
+            "slot": "1",
+            "type": "t_array(t_uint256)50_storage",
+            "contract": "ContextUpgradeable",
+            "src": "@openzeppelin/contracts-upgradeable/utils/ContextUpgradeable.sol:36"
+          },
+          {
+            "label": "_owner",
+            "offset": 0,
+            "slot": "51",
+            "type": "t_address",
+            "contract": "OwnableUpgradeable",
+            "src": "@openzeppelin/contracts-upgradeable/access/OwnableUpgradeable.sol:22"
+          },
+          {
+            "label": "__gap",
+            "offset": 0,
+            "slot": "52",
+            "type": "t_array(t_uint256)49_storage",
+            "contract": "OwnableUpgradeable",
+            "src": "@openzeppelin/contracts-upgradeable/access/OwnableUpgradeable.sol:94"
+          },
+          {
+            "label": "admins",
+            "offset": 0,
+            "slot": "101",
+            "type": "t_mapping(t_address,t_struct(Admin)1020_storage)",
+            "contract": "Authorization",
+            "src": "contracts/Authorization.sol:10"
+          },
+          {
+            "label": "doctors",
+            "offset": 0,
+            "slot": "102",
+            "type": "t_mapping(t_address,t_struct(Doctor)1039_storage)",
+            "contract": "Authorization",
+            "src": "contracts/Authorization.sol:11"
+          },
+          {
+            "label": "__gap",
+            "offset": 0,
+            "slot": "103",
+            "type": "t_array(t_uint256)49_storage",
+            "contract": "Authorization",
+            "src": "contracts/Authorization.sol:112"
+          },
+          {
+            "label": "patients",
+            "offset": 0,
+            "slot": "152",
+            "type": "t_mapping(t_address,t_struct(Patient)1077_storage)",
+            "contract": "HealthRecords",
+            "src": "contracts/HealthRecords.sol:9"
+          },
+          {
+            "label": "__gap",
+            "offset": 0,
+            "slot": "153",
+            "type": "t_array(t_uint256)49_storage",
+            "contract": "HealthRecords",
+            "src": "contracts/HealthRecords.sol:97"
+          }
+        ],
+        "types": {
+          "t_address": {
+            "label": "address",
+            "numberOfBytes": "20"
+          },
+          "t_array(t_struct(MedicalData)1057_storage)dyn_storage": {
+            "label": "struct DataStructure.MedicalData[]",
+            "numberOfBytes": "32"
+          },
+          "t_array(t_uint256)49_storage": {
+            "label": "uint256[49]",
+            "numberOfBytes": "1568"
+          },
+          "t_array(t_uint256)50_storage": {
+            "label": "uint256[50]",
+            "numberOfBytes": "1600"
+          },
+          "t_bool": {
+            "label": "bool",
+            "numberOfBytes": "1"
+          },
+          "t_enum(Gender)960": {
+            "label": "enum DataStructure.Gender",
+            "members": [
+              "Male",
+              "Female"
+            ],
+            "numberOfBytes": "1"
+          },
+          "t_enum(MedicalSpeciality)1002": {
+            "label": "enum DataStructure.MedicalSpeciality",
+            "members": [
+              "Anesthesia",
+              "Cardiovascular",
+              "CommunityHealth",
+              "Dentistry",
+              "Dermatology",
+              "DietNutrition",
+              "Emergency",
+              "Endocrine",
+              "Gastroenterologic",
+              "Genetic",
+              "Geriatric",
+              "Gynecologic",
+              "Hematologic",
+              "Infectious",
+              "LaboratoryScience",
+              "Midwifery",
+              "Musculoskeletal",
+              "Neurologic",
+              "Nursing",
+              "Obstetric",
+              "Oncologic",
+              "Optometric",
+              "Otolaryngologic",
+              "Pathology",
+              "Pediatric",
+              "PharmacySpecialty",
+              "Physiotherapy",
+              "PlasticSurgery",
+              "Podiatric",
+              "PrimaryCare",
+              "Psychiatric",
+              "PublicHealth",
+              "Pulmonary",
+              "Radiography",
+              "Renal",
+              "RespiratoryTherapy",
+              "Rheumatologic",
+              "SpeechPathology",
+              "Surgical",
+              "Toxicologic",
+              "Urologic"
+            ],
+            "numberOfBytes": "1"
+          },
+          "t_mapping(t_address,t_struct(Admin)1020_storage)": {
+            "label": "mapping(address => struct DataStructure.Admin)",
+            "numberOfBytes": "32"
+          },
+          "t_mapping(t_address,t_struct(Doctor)1039_storage)": {
+            "label": "mapping(address => struct DataStructure.Doctor)",
+            "numberOfBytes": "32"
+          },
+          "t_mapping(t_address,t_struct(Patient)1077_storage)": {
+            "label": "mapping(address => struct DataStructure.Patient)",
+            "numberOfBytes": "32"
+          },
+          "t_string_storage": {
+            "label": "string",
+            "numberOfBytes": "32"
+          },
+          "t_struct(Admin)1020_storage": {
+            "label": "struct DataStructure.Admin",
+            "members": [
+              {
+                "label": "firstName",
+                "type": "t_string_storage",
+                "offset": 0,
+                "slot": "0"
+              },
+              {
+                "label": "lastName",
+                "type": "t_string_storage",
+                "offset": 0,
+                "slot": "1"
+              },
+              {
+                "label": "phoneNumber",
+                "type": "t_string_storage",
+                "offset": 0,
+                "slot": "2"
+              },
+              {
+                "label": "email",
+                "type": "t_string_storage",
+                "offset": 0,
+                "slot": "3"
+              },
+              {
+                "label": "rAddress",
+                "type": "t_string_storage",
+                "offset": 0,
+                "slot": "4"
+              },
+              {
+                "label": "exists",
+                "type": "t_bool",
+                "offset": 0,
+                "slot": "5"
+              }
+            ],
+            "numberOfBytes": "192"
+          },
+          "t_struct(Doctor)1039_storage": {
+            "label": "struct DataStructure.Doctor",
+            "members": [
+              {
+                "label": "firstName",
+                "type": "t_string_storage",
+                "offset": 0,
+                "slot": "0"
+              },
+              {
+                "label": "lastName",
+                "type": "t_string_storage",
+                "offset": 0,
+                "slot": "1"
+              },
+              {
+                "label": "phoneNumber",
+                "type": "t_string_storage",
+                "offset": 0,
+                "slot": "2"
+              },
+              {
+                "label": "email",
+                "type": "t_string_storage",
+                "offset": 0,
+                "slot": "3"
+              },
+              {
+                "label": "rAddress",
+                "type": "t_string_storage",
+                "offset": 0,
+                "slot": "4"
+              },
+              {
+                "label": "gender",
+                "type": "t_enum(Gender)960",
+                "offset": 0,
+                "slot": "5"
+              },
+              {
+                "label": "speciality",
+                "type": "t_enum(MedicalSpeciality)1002",
+                "offset": 1,
+                "slot": "5"
+              },
+              {
+                "label": "exists",
+                "type": "t_bool",
+                "offset": 2,
+                "slot": "5"
+              }
+            ],
+            "numberOfBytes": "192"
+          },
+          "t_struct(Media)1007_storage": {
+            "label": "struct DataStructure.Media",
+            "members": [
+              {
+                "label": "description",
+                "type": "t_string_storage",
+                "offset": 0,
+                "slot": "0"
+              },
+              {
+                "label": "cid",
+                "type": "t_string_storage",
+                "offset": 0,
+                "slot": "1"
+              }
+            ],
+            "numberOfBytes": "64"
+          },
+          "t_struct(MedicalData)1057_storage": {
+            "label": "struct DataStructure.MedicalData",
+            "members": [
+              {
+                "label": "hospital",
+                "type": "t_string_storage",
+                "offset": 0,
+                "slot": "0"
+              },
+              {
+                "label": "doctor",
+                "type": "t_address",
+                "offset": 0,
+                "slot": "1"
+              },
+              {
+                "label": "patient",
+                "type": "t_address",
+                "offset": 0,
+                "slot": "2"
+              },
+              {
+                "label": "diagnosis",
+                "type": "t_string_storage",
+                "offset": 0,
+                "slot": "3"
+              },
+              {
+                "label": "treatment",
+                "type": "t_string_storage",
+                "offset": 0,
+                "slot": "4"
+              },
+              {
+                "label": "medication",
+                "type": "t_string_storage",
+                "offset": 0,
+                "slot": "5"
+              },
+              {
+                "label": "date",
+                "type": "t_uint256",
+                "offset": 0,
+                "slot": "6"
+              },
+              {
+                "label": "media",
+                "type": "t_struct(Media)1007_storage",
+                "offset": 0,
+                "slot": "7"
+              }
+            ],
+            "numberOfBytes": "288"
+          },
+          "t_struct(Patient)1077_storage": {
+            "label": "struct DataStructure.Patient",
+            "members": [
+              {
+                "label": "firstName",
+                "type": "t_string_storage",
+                "offset": 0,
+                "slot": "0"
+              },
+              {
+                "label": "lastName",
+                "type": "t_string_storage",
+                "offset": 0,
+                "slot": "1"
+              },
+              {
+                "label": "email",
+                "type": "t_string_storage",
+                "offset": 0,
+                "slot": "2"
+              },
+              {
+                "label": "phoneNumber",
+                "type": "t_string_storage",
+                "offset": 0,
+                "slot": "3"
+              },
+              {
+                "label": "rAddress",
+                "type": "t_string_storage",
+                "offset": 0,
+                "slot": "4"
+              },
+              {
+                "label": "gender",
+                "type": "t_enum(Gender)960",
+                "offset": 0,
+                "slot": "5"
+              },
+              {
+                "label": "reports",
+                "type": "t_array(t_struct(MedicalData)1057_storage)dyn_storage",
+                "offset": 0,
+                "slot": "6"
+              },
+              {
+                "label": "exists",
+                "type": "t_bool",
+                "offset": 0,
+                "slot": "7"
+              }
+            ],
+            "numberOfBytes": "256"
+          },
+          "t_uint256": {
+            "label": "uint256",
+            "numberOfBytes": "32"
+          },
+          "t_uint8": {
+            "label": "uint8",
+            "numberOfBytes": "1"
+          }
+        }
+      }
+    },
+    "ebf87070669f70658af585fa9c9cfa25c83f27dbd5a7c9731bfa5ee3abf5febc": {
+      "address": "0x8639C2FcFB453832f08849Be307902D84408a40B",
+      "txHash": "0x97b05d6613d46a6b33a746facdfd80e2e6198418989a2d3a8633813e05fbcc6e",
+      "layout": {
+        "solcVersion": "0.8.18",
+        "storage": [
+          {
+            "label": "_initialized",
+            "offset": 0,
+            "slot": "0",
+            "type": "t_uint8",
+            "contract": "Initializable",
+            "src": "@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol:63",
+            "retypedFrom": "bool"
+          },
+          {
+            "label": "_initializing",
+            "offset": 1,
+            "slot": "0",
+            "type": "t_bool",
+            "contract": "Initializable",
+            "src": "@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol:68"
+          },
+          {
+            "label": "__gap",
+            "offset": 0,
+            "slot": "1",
+            "type": "t_array(t_uint256)50_storage",
+            "contract": "ContextUpgradeable",
+            "src": "@openzeppelin/contracts-upgradeable/utils/ContextUpgradeable.sol:36"
+          },
+          {
+            "label": "_owner",
+            "offset": 0,
+            "slot": "51",
+            "type": "t_address",
+            "contract": "OwnableUpgradeable",
+            "src": "@openzeppelin/contracts-upgradeable/access/OwnableUpgradeable.sol:22"
+          },
+          {
+            "label": "__gap",
+            "offset": 0,
+            "slot": "52",
+            "type": "t_array(t_uint256)49_storage",
+            "contract": "OwnableUpgradeable",
+            "src": "@openzeppelin/contracts-upgradeable/access/OwnableUpgradeable.sol:94"
+          },
+          {
+            "label": "admins",
+            "offset": 0,
+            "slot": "101",
+            "type": "t_mapping(t_address,t_struct(Admin)1631_storage)",
+            "contract": "Authorization",
+            "src": "contracts/Authorization.sol:10"
+          },
+          {
+            "label": "doctors",
+            "offset": 0,
+            "slot": "102",
+            "type": "t_mapping(t_address,t_struct(Doctor)1650_storage)",
+            "contract": "Authorization",
+            "src": "contracts/Authorization.sol:11"
+          },
+          {
+            "label": "__gap",
+            "offset": 0,
+            "slot": "103",
+            "type": "t_array(t_uint256)49_storage",
+            "contract": "Authorization",
+            "src": "contracts/Authorization.sol:112"
+          },
+          {
+            "label": "__gap",
+            "offset": 0,
+            "slot": "152",
+            "type": "t_array(t_uint256)50_storage",
+            "contract": "ERC1967UpgradeUpgradeable",
+            "src": "@openzeppelin/contracts-upgradeable/proxy/ERC1967/ERC1967UpgradeUpgradeable.sol:169"
+          },
+          {
+            "label": "__gap",
+            "offset": 0,
+            "slot": "202",
+            "type": "t_array(t_uint256)50_storage",
+            "contract": "UUPSUpgradeable",
+            "src": "@openzeppelin/contracts-upgradeable/proxy/utils/UUPSUpgradeable.sol:111"
+          },
+          {
+            "label": "patients",
+            "offset": 0,
+            "slot": "252",
+            "type": "t_mapping(t_address,t_struct(Patient)1688_storage)",
+            "contract": "HealthRecords",
+            "src": "contracts/HealthRecords.sol:10"
+          },
+          {
+            "label": "__gap",
+            "offset": 0,
+            "slot": "253",
+            "type": "t_array(t_uint256)49_storage",
+            "contract": "HealthRecords",
+            "src": "contracts/HealthRecords.sol:100"
+          }
+        ],
+        "types": {
+          "t_address": {
+            "label": "address",
+            "numberOfBytes": "20"
+          },
+          "t_array(t_struct(MedicalData)1668_storage)dyn_storage": {
+            "label": "struct DataStructure.MedicalData[]",
+            "numberOfBytes": "32"
+          },
+          "t_array(t_uint256)49_storage": {
+            "label": "uint256[49]",
+            "numberOfBytes": "1568"
+          },
+          "t_array(t_uint256)50_storage": {
+            "label": "uint256[50]",
+            "numberOfBytes": "1600"
+          },
+          "t_bool": {
+            "label": "bool",
+            "numberOfBytes": "1"
+          },
+          "t_enum(Gender)1571": {
+            "label": "enum DataStructure.Gender",
+            "members": [
+              "Male",
+              "Female"
+            ],
+            "numberOfBytes": "1"
+          },
+          "t_enum(MedicalSpeciality)1613": {
+            "label": "enum DataStructure.MedicalSpeciality",
+            "members": [
+              "Anesthesia",
+              "Cardiovascular",
+              "CommunityHealth",
+              "Dentistry",
+              "Dermatology",
+              "DietNutrition",
+              "Emergency",
+              "Endocrine",
+              "Gastroenterologic",
+              "Genetic",
+              "Geriatric",
+              "Gynecologic",
+              "Hematologic",
+              "Infectious",
+              "LaboratoryScience",
+              "Midwifery",
+              "Musculoskeletal",
+              "Neurologic",
+              "Nursing",
+              "Obstetric",
+              "Oncologic",
+              "Optometric",
+              "Otolaryngologic",
+              "Pathology",
+              "Pediatric",
+              "PharmacySpecialty",
+              "Physiotherapy",
+              "PlasticSurgery",
+              "Podiatric",
+              "PrimaryCare",
+              "Psychiatric",
+              "PublicHealth",
+              "Pulmonary",
+              "Radiography",
+              "Renal",
+              "RespiratoryTherapy",
+              "Rheumatologic",
+              "SpeechPathology",
+              "Surgical",
+              "Toxicologic",
+              "Urologic"
+            ],
+            "numberOfBytes": "1"
+          },
+          "t_mapping(t_address,t_struct(Admin)1631_storage)": {
+            "label": "mapping(address => struct DataStructure.Admin)",
+            "numberOfBytes": "32"
+          },
+          "t_mapping(t_address,t_struct(Doctor)1650_storage)": {
+            "label": "mapping(address => struct DataStructure.Doctor)",
+            "numberOfBytes": "32"
+          },
+          "t_mapping(t_address,t_struct(Patient)1688_storage)": {
+            "label": "mapping(address => struct DataStructure.Patient)",
+            "numberOfBytes": "32"
+          },
+          "t_string_storage": {
+            "label": "string",
+            "numberOfBytes": "32"
+          },
+          "t_struct(Admin)1631_storage": {
+            "label": "struct DataStructure.Admin",
+            "members": [
+              {
+                "label": "firstName",
+                "type": "t_string_storage",
+                "offset": 0,
+                "slot": "0"
+              },
+              {
+                "label": "lastName",
+                "type": "t_string_storage",
+                "offset": 0,
+                "slot": "1"
+              },
+              {
+                "label": "phoneNumber",
+                "type": "t_string_storage",
+                "offset": 0,
+                "slot": "2"
+              },
+              {
+                "label": "email",
+                "type": "t_string_storage",
+                "offset": 0,
+                "slot": "3"
+              },
+              {
+                "label": "rAddress",
+                "type": "t_string_storage",
+                "offset": 0,
+                "slot": "4"
+              },
+              {
+                "label": "exists",
+                "type": "t_bool",
+                "offset": 0,
+                "slot": "5"
+              }
+            ],
+            "numberOfBytes": "192"
+          },
+          "t_struct(Doctor)1650_storage": {
+            "label": "struct DataStructure.Doctor",
+            "members": [
+              {
+                "label": "firstName",
+                "type": "t_string_storage",
+                "offset": 0,
+                "slot": "0"
+              },
+              {
+                "label": "lastName",
+                "type": "t_string_storage",
+                "offset": 0,
+                "slot": "1"
+              },
+              {
+                "label": "phoneNumber",
+                "type": "t_string_storage",
+                "offset": 0,
+                "slot": "2"
+              },
+              {
+                "label": "email",
+                "type": "t_string_storage",
+                "offset": 0,
+                "slot": "3"
+              },
+              {
+                "label": "rAddress",
+                "type": "t_string_storage",
+                "offset": 0,
+                "slot": "4"
+              },
+              {
+                "label": "gender",
+                "type": "t_enum(Gender)1571",
+                "offset": 0,
+                "slot": "5"
+              },
+              {
+                "label": "speciality",
+                "type": "t_enum(MedicalSpeciality)1613",
+                "offset": 1,
+                "slot": "5"
+              },
+              {
+                "label": "exists",
+                "type": "t_bool",
+                "offset": 2,
+                "slot": "5"
+              }
+            ],
+            "numberOfBytes": "192"
+          },
+          "t_struct(Media)1618_storage": {
+            "label": "struct DataStructure.Media",
+            "members": [
+              {
+                "label": "description",
+                "type": "t_string_storage",
+                "offset": 0,
+                "slot": "0"
+              },
+              {
+                "label": "cid",
+                "type": "t_string_storage",
+                "offset": 0,
+                "slot": "1"
+              }
+            ],
+            "numberOfBytes": "64"
+          },
+          "t_struct(MedicalData)1668_storage": {
+            "label": "struct DataStructure.MedicalData",
+            "members": [
+              {
+                "label": "hospital",
+                "type": "t_string_storage",
+                "offset": 0,
+                "slot": "0"
+              },
+              {
+                "label": "doctor",
+                "type": "t_address",
+                "offset": 0,
+                "slot": "1"
+              },
+              {
+                "label": "patient",
+                "type": "t_address",
+                "offset": 0,
+                "slot": "2"
+              },
+              {
+                "label": "diagnosis",
+                "type": "t_string_storage",
+                "offset": 0,
+                "slot": "3"
+              },
+              {
+                "label": "treatment",
+                "type": "t_string_storage",
+                "offset": 0,
+                "slot": "4"
+              },
+              {
+                "label": "medication",
+                "type": "t_string_storage",
+                "offset": 0,
+                "slot": "5"
+              },
+              {
+                "label": "date",
+                "type": "t_uint256",
+                "offset": 0,
+                "slot": "6"
+              },
+              {
+                "label": "media",
+                "type": "t_struct(Media)1618_storage",
+                "offset": 0,
+                "slot": "7"
+              }
+            ],
+            "numberOfBytes": "288"
+          },
+          "t_struct(Patient)1688_storage": {
+            "label": "struct DataStructure.Patient",
+            "members": [
+              {
+                "label": "firstName",
+                "type": "t_string_storage",
+                "offset": 0,
+                "slot": "0"
+              },
+              {
+                "label": "lastName",
+                "type": "t_string_storage",
+                "offset": 0,
+                "slot": "1"
+              },
+              {
+                "label": "email",
+                "type": "t_string_storage",
+                "offset": 0,
+                "slot": "2"
+              },
+              {
+                "label": "phoneNumber",
+                "type": "t_string_storage",
+                "offset": 0,
+                "slot": "3"
+              },
+              {
+                "label": "rAddress",
+                "type": "t_string_storage",
+                "offset": 0,
+                "slot": "4"
+              },
+              {
+                "label": "gender",
+                "type": "t_enum(Gender)1571",
+                "offset": 0,
+                "slot": "5"
+              },
+              {
+                "label": "reports",
+                "type": "t_array(t_struct(MedicalData)1668_storage)dyn_storage",
+                "offset": 0,
+                "slot": "6"
+              },
+              {
+                "label": "exists",
+                "type": "t_bool",
+                "offset": 0,
+                "slot": "7"
+              }
+            ],
+            "numberOfBytes": "256"
+          },
+          "t_uint256": {
+            "label": "uint256",
+            "numberOfBytes": "32"
+          },
+          "t_uint8": {
+            "label": "uint8",
+            "numberOfBytes": "1"
+          }
+        }
+      }
+    }
+  }
+}

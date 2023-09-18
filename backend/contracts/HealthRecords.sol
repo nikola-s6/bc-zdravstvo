@@ -2,10 +2,16 @@
 pragma solidity ^0.8.0;
 
 import "./Authorization.sol";
+import "@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol";
+import "@openzeppelin/contracts-upgradeable/proxy/utils/UUPSUpgradeable.sol";
 
 // By inheriting Authorization this contract is also inheriting DataStructure
-contract HealthRecords is Authorization {
+contract HealthRecords is Initializable, Authorization, UUPSUpgradeable {
     mapping(address => Patient) private patients;
+
+    function initialize() public initializer {
+        __Authorization_init();
+    }
 
     // gender is sent as uint8
     function createPatient(
@@ -88,4 +94,8 @@ contract HealthRecords is Authorization {
         }
         return "patient";
     }
+
+    function _authorizeUpgrade(address) internal override onlyOwner {}
+
+    uint256[49] private __gap;
 }
